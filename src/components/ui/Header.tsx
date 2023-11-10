@@ -3,13 +3,14 @@ import { Dropdown, Space } from "antd";
 import type { MenuProps } from "antd";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { removeUserInfo } from "@/services/auth.service";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 
 const { Header: AntHeader } = Layout;
 const Header = () => {
   const router = useRouter();
+  const { role } = getUserInfo() as any;
   const logOut = () => {
     removeUserInfo(authKey);
     router.push("/login");
@@ -35,6 +36,16 @@ const Header = () => {
           height: "100%",
         }}
       >
+        {" "}
+        <p
+          style={{
+            margin: "0px 5px",
+            padding: "5px",
+            fontWeight: "bold",
+          }}
+        >
+          {role}
+        </p>
         <Dropdown menu={{ items }}>
           <Space wrap size={16}>
             <Avatar size="large" icon={<UserOutlined />} />

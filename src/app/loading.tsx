@@ -1,5 +1,5 @@
 "use client";
-import { Row } from "antd";
+import { Row, Space } from "antd";
 import { Spin } from "antd";
 
 const Loading = () => {
@@ -11,7 +11,9 @@ const Loading = () => {
         height: "100vh",
       }}
     >
-      <Spin size="large" />
+      <Space>
+        <Spin size="large" />
+      </Space>
     </Row>
   );
 };

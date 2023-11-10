@@ -1,7 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Home() {
-  return (
-    <div>
-      <h2>this is home page</h2>
-    </div>
-  );
+  return redirect("/profile");
 }

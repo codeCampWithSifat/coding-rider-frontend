@@ -28,8 +28,9 @@ const DashboradLayout = ({ children }: { children: React.ReactNode }) => {
           height: "100vh",
         }}
       >
-        <Spin />
-        <span>Loading..........</span>
+        <Spin tip="Loading">
+          <div className="content" />
+        </Spin>
       </Row>
     );
   }
