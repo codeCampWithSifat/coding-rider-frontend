@@ -1,7 +1,27 @@
+import ActionBar from "@/components/ui/ActionBar";
+import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import { Button } from "antd";
+import Link from "next/link";
+
 const AdminPage = () => {
   return (
     <div>
-      <h2>this page is for </h2>
+      <UMBreadCrumb
+        items={[
+          {
+            label: "super_admin",
+            link: "/super_admin",
+          },
+        ]}
+      />
+
+      <ActionBar title="Admin List">
+        <Link href="/super_admin/admin/create">
+          <Button type="primary" style={{ margin: "1rem 0" }}>
+            Create Admin
+          </Button>
+        </Link>
+      </ActionBar>
     </div>
   );
 };

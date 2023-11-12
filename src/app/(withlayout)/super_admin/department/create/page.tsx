@@ -1,6 +1,6 @@
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 
-const UserPage = () => {
+const CreateDepartment = () => {
   return (
     <div>
       <UMBreadCrumb
@@ -9,11 +9,15 @@ const UserPage = () => {
             label: "super_admin",
             link: "/super_admin",
           },
+          {
+            label: "admin",
+            link: "/super_admin/department",
+          },
         ]}
       />
-      <h2>this is only user page</h2>
+      <h2>this is create department</h2>
     </div>
   );
 };
 
-export default UserPage;
+export default CreateDepartment;
