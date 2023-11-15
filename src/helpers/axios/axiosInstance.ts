@@ -34,8 +34,8 @@ instance.interceptors.response.use(
       data: response?.data?.data,
       meta: response?.data?.meta,
     };
-    // return responseObject;
-    return { ...response, data: responseObject?.data };
+    return responseObject;
+    // return { ...response, data: responseObject?.data };
   },
   function (error) {
     // Do something with response error
