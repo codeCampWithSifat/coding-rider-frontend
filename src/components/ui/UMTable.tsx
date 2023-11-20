@@ -26,10 +26,10 @@ const UMTable = ({
 }: UMTableProps) => {
   const paginationConfig = showPagination
     ? {
-        pageSize: 3,
-        total: 100,
+        pageSize: pageSize,
+        total: totalPages,
         pageSizeOptions: [5, 10, 15, 20],
-        showSizeChanger: true,
+        showSizeChanger: showSizeChanger,
         onChange: onPaginationChange,
       }
     : false;

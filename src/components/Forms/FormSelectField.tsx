@@ -2,10 +2,15 @@
 import { Select } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
-type SelectOptions = {
-  label?: string;
-  value?: string;
+export type SelectOptions = {
+  label: string;
+  value: string;
 };
+
+// export type SelectOptions = {
+//   label: string;
+//   value: string;
+// };
 
 type SelectFieldsProps = {
   name: string;
@@ -15,6 +20,7 @@ type SelectFieldsProps = {
   placeholder?: string;
   defaultValue?: SelectOptions;
   label?: string;
+  handleChange?: (value: string) => void;
 };
 
 const FormSelectField = ({
@@ -25,6 +31,7 @@ const FormSelectField = ({
   options,
   defaultValue,
   label,
+  handleChange,
 }: SelectFieldsProps) => {
   const { control } = useFormContext();
 
@@ -37,7 +44,7 @@ const FormSelectField = ({
           name={name}
           render={({ field: { value, onChange } }) => (
             <Select
-              onChange={onChange}
+              onChange={handleChange ? handleChange : onChange}
               size={size}
               placeholder={placeholder}
               style={{ width: "100%" }}

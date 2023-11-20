@@ -20,7 +20,7 @@ import { useDebounced } from "@/redux/hooks";
 
 const ManagementDepartmentPage = () => {
   const query: Record<string, any> = {};
-  const [size, setSize] = useState<number>(2);
+  const [size, setSize] = useState<number>(5);
   const [page, setPage] = useState<number>(1);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");

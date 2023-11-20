@@ -9,6 +9,9 @@ import {
   facultyOptions,
   genderOptions,
 } from "@/constants/global";
+import ACDepartmentField from "../Forms/ACDepartmentField";
+import ACFacultyField from "../Forms/ACFacultyField";
+import ACSemesterField from "../Forms/ACSemesterField";
 
 const StudentInfo = () => {
   return (
@@ -85,10 +88,15 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          <FormSelectField
+          {/* <FormSelectField
             size="large"
             name="student.academicDepartment"
             options={acDepartmentOptions}
+            label="Academic Department"
+            placeholder="Select"
+          /> */}
+          <ACDepartmentField
+            name="student.academicDepartment"
             label="Academic Department"
             placeholder="Select"
           />
@@ -100,10 +108,15 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          <FormSelectField
+          {/* <FormSelectField
             size="large"
             name="student.academicFaculty"
             options={facultyOptions}
+            label="Academic Faculty"
+            placeholder="Select"
+          /> */}
+          <ACFacultyField
+            name="student.academicFaculty"
             label="Academic Faculty"
             placeholder="Select"
           />
@@ -115,10 +128,15 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          <FormSelectField
+          {/* <FormSelectField
             size="large"
             name="student.academicSemester"
             options={acSemesterOptions}
+            label="Academic Semester"
+            placeholder="Select"
+          /> */}
+          <ACSemesterField
+            name="student.academicSemester"
             label="Academic Semester"
             placeholder="Select"
           />
@@ -145,7 +163,7 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          <UploadImage />
+          <UploadImage name="file" />
         </Col>
       </Row>
     </div>

@@ -40,6 +40,7 @@ const AdminPage = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useAdminsQuery({ ...query });
+  console.log(data);
 
   const admins = data?.admins;
   const meta = data?.meta;
@@ -89,14 +90,15 @@ const AdminPage = () => {
       title: "Action",
       dataIndex: "id",
       render: function (data: any) {
+        // console.log(data);
         return (
           <>
-            <Link href={`/super_admin/admin/details/${data.id}`}>
+            <Link href={`/super_admin/admin/details/${data?._id}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
             </Link>
-            <Link href={`/super_admin/admin/edit/${data.id}`}>
+            <Link href={`/super_admin/admin/edit/${data?.id}`}>
               <Button
                 style={{
                   margin: "0px 5px",
