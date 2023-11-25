@@ -1,5 +1,6 @@
 "use client";
 import ACDepartmentField from "@/components/Forms/ACDepartmentField";
+import ACDepartmentIDField from "@/components/Forms/ACDepartmentIdField";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormSelectField, {
@@ -51,6 +52,7 @@ const CreateOfferedCourseSectionPage = () => {
       if (res?.id) {
         message.success("Offered Course created successfully");
       }
+      // console.log(data);
     } catch (err: any) {
       console.error(err.message);
       message.error(err.message);
@@ -77,13 +79,17 @@ const CreateOfferedCourseSectionPage = () => {
                 name="semesterRegistration"
                 label="Semester Registration"
                 onChange={(el: any) => setSemesterRegistrationId(el)}
+                // onChange={(el: any) => console.log(el)}
+                placeholder="Select Semester Registration"
               />
             </div>
             <div style={{ margin: "10px 0px" }}>
-              <ACDepartmentField
+              <ACDepartmentIDField
                 name="academicDepartment"
                 label="Academic Department"
                 onChange={(el) => setAcDepartmentId(el)}
+                // onChange={(el: any) => console.log(el)}
+                placeholder="Select Academic Department"
               />
             </div>
             <div style={{ margin: "10px 0px" }}>
@@ -91,6 +97,7 @@ const CreateOfferedCourseSectionPage = () => {
                 options={offeredCoursesOptions as SelectOptions[]}
                 name="offeredCourseId"
                 label="Offered Course"
+                placeholder="Select Your Offered Course"
               />
             </div>
             <div style={{ margin: "10px 0px" }}>

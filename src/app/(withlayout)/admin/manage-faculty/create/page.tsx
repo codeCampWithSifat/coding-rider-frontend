@@ -25,6 +25,7 @@ const CreateFacultyPage = () => {
     formData.append("file", file as Blob);
     formData.append("data", data);
     message.loading("Creating...");
+    // console.log(values);
     try {
       const res = await addFacultyWithFormData(formData);
       if (!!res) {
@@ -104,12 +105,14 @@ const CreateFacultyPage = () => {
               <ACFacultyField
                 name="faculty.academicFaculty"
                 label="Academic Faculty"
+                placeholder="Select Academic Faculty"
               />
             </Col>
             <Col span={8} style={{ margin: "10px 0" }}>
               <ACDepartmentField
                 name="faculty.academicDepartment"
                 label="Academic Department"
+                placeholder="Select Academic Department"
               />
             </Col>
 

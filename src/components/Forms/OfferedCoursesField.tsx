@@ -5,9 +5,14 @@ import { SelectOptions } from "./FormSelectField";
 type MultiSelectFieldProps = {
   name: string;
   label: string;
+  placeholder?: string;
 };
 
-const OfferedCoursesField = ({ name, label }: MultiSelectFieldProps) => {
+const OfferedCoursesField = ({
+  name,
+  label,
+  placeholder,
+}: MultiSelectFieldProps) => {
   const { data, isLoading } = useCoursesQuery({ limit: 10, page: 1 });
 
   const courses = data?.courses;
@@ -23,6 +28,7 @@ const OfferedCoursesField = ({ name, label }: MultiSelectFieldProps) => {
         name={name}
         label={label}
         options={coursesOptions as SelectOptions[]}
+        placeholder={placeholder}
       />
     </>
   );

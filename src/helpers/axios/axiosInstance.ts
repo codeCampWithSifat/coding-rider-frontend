@@ -26,8 +26,8 @@ instance.interceptors.request.use(
 );
 
 // Add a response interceptor
-// @ts-ignore
 instance.interceptors.response.use(
+  // @ts-ignore
   function (response) {
     // Do something with response data
     const responseObject: ResponseSuccessType = {

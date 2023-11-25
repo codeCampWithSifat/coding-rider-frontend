@@ -13,12 +13,14 @@ const ACFacultyField = ({ name, label, placeholder }: ACFacultyFieldProps) => {
     page: 1,
   });
   const academicFaculties = data?.academicFaculties;
-  const acFacultyOptions = academicFaculties?.map((acFaculty: any) => {
-    return {
-      label: acFaculty?.title,
-      value: acFaculty?.id,
-    };
-  });
+  const acFacultyOptions =
+    academicFaculties &&
+    academicFaculties?.map((acFaculty: any) => {
+      return {
+        label: acFaculty?.title,
+        value: acFaculty?.id,
+      };
+    });
 
   return (
     <FormSelectField

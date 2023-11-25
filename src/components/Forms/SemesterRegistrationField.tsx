@@ -1,4 +1,3 @@
-import { useAcademicDepartmentsQuery } from "@/redux/api/academic/departmentApi";
 import FormSelectField, { SelectOptions } from "./FormSelectField";
 import { useSemesterRegistrationsQuery } from "@/redux/api/semesterRegistrationApi";
 
@@ -6,12 +5,14 @@ type SemesterRegistrationFieldProps = {
   name: string;
   label?: string;
   onChange: (e: any) => void;
+  placeholder?: string;
 };
 
 const SemesterRegistrationField = ({
   name,
   label,
   onChange,
+  placeholder,
 }: SemesterRegistrationFieldProps) => {
   const { data, isLoading } = useSemesterRegistrationsQuery({
     limit: 100,
@@ -36,6 +37,7 @@ const SemesterRegistrationField = ({
       label={label}
       options={semesterRegistrationsOptions as SelectOptions[]}
       handleChange={(e: any) => onChange(e)}
+      placeholder={placeholder}
     />
   );
 };

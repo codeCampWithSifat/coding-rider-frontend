@@ -56,6 +56,7 @@ const CreateSemesterRegistrationPage = () => {
               <ACSemesterField
                 name="academicSemesterId"
                 label="Academic Semester"
+                placeholder="Select Your Academic Semester"
               />
             </div>
             <div style={{ margin: "10px 0px" }}>

@@ -42,11 +42,11 @@ const FacultyPage = () => {
 
   const faculties = data?.faculties;
   const meta = data?.meta;
-  console.log(faculties);
+  // console.log(faculties);
 
   const columns = [
     {
-      title: "FacultyId",
+      title: "Faculty-Id",
       dataIndex: "facultyId",
       sorter: true,
     },
@@ -90,7 +90,7 @@ const FacultyPage = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/manage-faculty/details/${data.id}`}>
+            <Link href={`/admin/manage-faculty/details/${data?.id}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
@@ -115,7 +115,7 @@ const FacultyPage = () => {
     },
   ];
   const onPaginationChange = (page: number, pageSize: number) => {
-    console.log("Page:", page, "PageSize:", pageSize);
+    // console.log("Page:", page, "PageSize:", pageSize);
     setPage(page);
     setSize(pageSize);
   };

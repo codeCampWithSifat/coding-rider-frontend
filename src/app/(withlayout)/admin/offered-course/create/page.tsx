@@ -20,10 +20,14 @@ const CreateOfferedCoursePage = () => {
   });
 
   const semesterRegistrations = data?.semesterRegistrations;
+  // console.log(semesterRegistrations);
   const semesterRegistrationsOptions = semesterRegistrations?.map(
     (semester) => {
       return {
-        label: semester?.academicSemester?.title,
+        label:
+          semester?.academicSemester?.title +
+          "-" +
+          semester?.academicSemester?.year,
         value: semester?.id,
       };
     }
@@ -59,17 +63,23 @@ const CreateOfferedCoursePage = () => {
                 options={semesterRegistrationsOptions as SelectOptions[]}
                 name="semesterRegistrationId"
                 label="Semester registration"
+                placeholder="Select Your Semester"
               />
             </div>
 
             <div style={{ margin: "10px 0px" }}>
-              <OfferedCoursesField name="courseIds" label="Courses" />
+              <OfferedCoursesField
+                name="courseIds"
+                label="Courses"
+                placeholder="Select Courses"
+              />
             </div>
 
             <div style={{ margin: "10px 0px" }}>
               <ACDepartmentField
                 name="academicDepartmentId"
                 label="Academic department"
+                placeholder="Select Academic Department"
               />
             </div>
           </Col>

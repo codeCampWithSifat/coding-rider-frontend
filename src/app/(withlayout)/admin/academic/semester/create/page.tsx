@@ -67,7 +67,7 @@ const CreateACSemesterPage = () => {
                 name="title"
                 options={semesterOptions}
                 label="Title"
-                placeholder="Select"
+                placeholder="Select Title"
               />
             </div>
             <div style={{ margin: "10px 0" }}>
@@ -76,7 +76,7 @@ const CreateACSemesterPage = () => {
                 name="startMonth"
                 options={monthOptions}
                 label="Start Month"
-                placeholder="Select"
+                placeholder="Select Month"
               />
             </div>
             <div style={{ margin: "10px 0" }}>
@@ -85,7 +85,7 @@ const CreateACSemesterPage = () => {
                 name="endMonth"
                 options={monthOptions}
                 label="End Month"
-                placeholder="Select"
+                placeholder="Select Month"
               />
             </div>
             <div style={{ margin: "10px 0" }}>

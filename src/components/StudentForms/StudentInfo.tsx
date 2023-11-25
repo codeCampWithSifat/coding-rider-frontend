@@ -88,13 +88,6 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          {/* <FormSelectField
-            size="large"
-            name="student.academicDepartment"
-            options={acDepartmentOptions}
-            label="Academic Department"
-            placeholder="Select"
-          /> */}
           <ACDepartmentField
             name="student.academicDepartment"
             label="Academic Department"
@@ -108,13 +101,6 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          {/* <FormSelectField
-            size="large"
-            name="student.academicFaculty"
-            options={facultyOptions}
-            label="Academic Faculty"
-            placeholder="Select"
-          /> */}
           <ACFacultyField
             name="student.academicFaculty"
             label="Academic Faculty"
@@ -128,13 +114,6 @@ const StudentInfo = () => {
             marginBottom: "10px",
           }}
         >
-          {/* <FormSelectField
-            size="large"
-            name="student.academicSemester"
-            options={acSemesterOptions}
-            label="Academic Semester"
-            placeholder="Select"
-          /> */}
           <ACSemesterField
             name="student.academicSemester"
             label="Academic Semester"

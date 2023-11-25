@@ -20,7 +20,7 @@ type SelectFieldsProps = {
   placeholder?: string;
   defaultValue?: SelectOptions;
   label?: string;
-  handleChange?: (value: string) => void;
+  handleChange?: (el: string) => void;
 };
 
 const FormSelectField = ({
