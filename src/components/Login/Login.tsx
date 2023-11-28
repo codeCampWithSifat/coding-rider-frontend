@@ -8,6 +8,8 @@ import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
+import { loginSchema } from "@/schemas/login";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 type FormValues = {
   id: string;
@@ -21,7 +23,7 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
-      console.log(res);
+      // console.log(res);
       if (res?.accessToken) {
         router.push("/profile");
         message.success("Login Successfully");
@@ -47,13 +49,14 @@ const LoginPage = () => {
           First Login Your Account
         </h1>
         <div>
-          <Form submitHandler={onSubmit}>
+          <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>
               <FormInput
                 name="id"
                 type="text"
                 size="large"
                 placeholder="Your Id"
+                required
                 label="Your Id"
               />
             </div>
@@ -63,6 +66,7 @@ const LoginPage = () => {
                 type="password"
                 size="large"
                 placeholder="Your Password"
+                required
                 label="Your Password"
               />
             </div>

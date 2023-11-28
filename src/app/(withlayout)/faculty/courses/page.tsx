@@ -3,21 +3,14 @@ import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { Button, Input } from "antd";
 import Link from "next/link";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  ReloadOutlined,
-  EyeOutlined,
-} from "@ant-design/icons";
+import { ReloadOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import UMTable from "@/components/ui/UMTable";
-import { IDepartment } from "@/types";
-import dayjs from "dayjs";
-import { useFacultiesQuery } from "@/redux/api/facultyApi";
-import { useStudentsQuery } from "@/redux/api/studentApi";
+import { IOfferedCourseSchedule, IOfferedCourseSection } from "@/types";
+import { useFacultyCoursesQuery } from "@/redux/api/facultyApi";
 
-const StudentPage = () => {
+const FacultyCoursesPage = () => {
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -39,71 +32,80 @@ const StudentPage = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useStudentsQuery({ ...query });
+  const { data, isLoading } = useFacultyCoursesQuery({ ...query });
 
-  const students = data?.students;
+  const myCourses = data?.myCourses;
   const meta = data?.meta;
-  // console.log(students);
+
+  // console.log(myCourses);
 
   const columns = [
     {
-      title: "Id",
-      dataIndex: "studentId",
-      sorter: true,
-    },
-    {
-      title: "Name",
-      render: function (data: Record<string, string>) {
-        const fullName = `${data?.firstName} ${data?.middleName} ${data?.lastName}`;
-        return <>{fullName}</>;
+      title: "Course name",
+      dataIndex: "course",
+      render: function (data: any) {
+        return <>{data?.title}</>;
       },
     },
     {
-      title: "Email",
-      dataIndex: "email",
-    },
-    {
-      title: "Created at",
-      dataIndex: "createdAt",
+      title: "Code",
+      dataIndex: "course",
       render: function (data: any) {
-        return data && dayjs(data).format("MMM D, YYYY hh:mm A");
+        return <>{data?.code}</>;
       },
-      sorter: true,
     },
     {
-      title: "Contact no.",
-      dataIndex: "contactNo",
-    },
-    {
-      title: "Gender",
-      dataIndex: "gender",
-      sorter: true,
-    },
-    {
-      title: "Action",
-      dataIndex: "id",
+      title: "Credit",
+      dataIndex: "course",
       render: function (data: any) {
+        return <>{data?.credits}</>;
+      },
+    },
+    {
+      title: "Section",
+      dataIndex: "sections",
+      render: function (
+        data: {
+          classSchedules: IOfferedCourseSchedule[];
+          section: IOfferedCourseSection;
+        }[]
+      ) {
+        const section = data?.map((el) => el?.section);
         return (
           <>
-            <Link href={`/super_admin/manage-faculty/details/${data.id}`}>
-              <Button onClick={() => console.log(data)} type="primary">
-                <EyeOutlined />
-              </Button>
-            </Link>
-            <Link href={`/super_admin/manage-faculty/edit/${data.id}`}>
-              <Button
-                style={{
-                  margin: "0px 5px",
-                }}
-                onClick={() => console.log(data)}
-                type="primary"
-              >
-                <EditOutlined />
-              </Button>
-            </Link>
-            <Button onClick={() => console.log(data)} type="primary" danger>
-              <DeleteOutlined />
-            </Button>
+            {section?.map((el, index) => {
+              return (
+                <div key={index} style={{ margin: "20px 0px" }}>
+                  <span>
+                    Sec - {el?.title} ({el?.currentlyEnrolledStudent}/
+                    {el?.maxCapacity})
+                  </span>
+                </div>
+              );
+            })}
+          </>
+        );
+      },
+    },
+
+    {
+      title: "Action",
+      render: function (data: any) {
+        const section: IOfferedCourseSection[] | undefined =
+          data?.sections?.map((el: any) => el?.section);
+        return (
+          <>
+            {section?.map((el: IOfferedCourseSection, index: number) => {
+              return (
+                <div key={index} style={{ margin: "20px 0px" }}>
+                  <Link
+                    href={`/faculty/courses/student?courseId=${data?.course?.id}&offeredCourseSectionId=${el?.id}`}
+                  >
+                    <Button type="primary">View all students</Button>
+                  </Link>
+                </div>
+              );
+            })}
           </>
         );
       },
@@ -131,12 +133,12 @@ const StudentPage = () => {
       <UMBreadCrumb
         items={[
           {
-            label: "super_admin",
-            link: "/super_admin",
+            label: "faculty",
+            link: "/faculty",
           },
         ]}
       />
-      <ActionBar title="Student List">
+      <ActionBar title="My Courses">
         <Input
           size="large"
           placeholder="Search"
@@ -146,9 +148,6 @@ const StudentPage = () => {
           }}
         />
         <div>
-          <Link href="/super_admin/manage-student/create">
-            <Button type="primary">Create</Button>
-          </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button
               style={{ margin: "0px 5px" }}
@@ -164,7 +163,7 @@ const StudentPage = () => {
       <UMTable
         loading={isLoading}
         columns={columns}
-        dataSource={students}
+        dataSource={myCourses}
         pageSize={size}
         totalPages={meta?.total}
         showSizeChanger={true}
@@ -176,4 +175,4 @@ const StudentPage = () => {
   );
 };
 
-export default StudentPage;
+export default FacultyCoursesPage;
